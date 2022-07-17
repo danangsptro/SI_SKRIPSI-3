@@ -32,5 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/barang-delete/{id}', 'barangController@delete')->name('barang-delete');
         // Jadwal Produksi
         Route::get('/jadwal-produksi', 'jadwalProduksiController@index')->name('jadwal-produksi');
+        Route::get('/jadwal-produksi-create', 'jadwalProduksiController@create')->name('jadwal-produksi-create');
+        Route::post('/jadwal-produksi-store', 'jadwalProduksiController@store')->name('jadwal-produksi-store');
+        Route::delete('/jadwal-produksi-delete/{id}', 'jadwalProduksiController@delete')->name('jadwal-produksi-delete');
     });
 });

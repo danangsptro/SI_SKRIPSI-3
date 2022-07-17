@@ -15,7 +15,18 @@ class CreateJadwalProduksisTable extends Migration
     {
         Schema::create('jadwal_produksis', function (Blueprint $table) {
             $table->id();
+            $table->date('jadwal_dibuat');
+            $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('barang_id')->unsigned();
+            $table->integer('total_barang');
+            $table->string('satuan');
+            $table->date('tanggal_produksi');
+            $table->string('deadline_produksi');
+            $table->string('status_produksi');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
         });
     }
 
