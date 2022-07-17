@@ -134,8 +134,8 @@
                                     </div>
                                     <select class="custom-select" id="inputGroupSelect01" name="status_produksi">
                                         <option selected>Pilih Option</option>
-                                        <option value="FD">FINISHED</option>
-                                        <option value="UFD">UNFINISHED</option>
+                                        <option value="FINISHED">FINISHED</option>
+                                        <option value="UNFINISHED">UNFINISHED</option>
                                     </select>
                                     @error('status_produksi')
                                         <div class="text-danger">{{ $message }}</div>
