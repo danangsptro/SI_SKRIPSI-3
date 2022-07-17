@@ -27,6 +27,7 @@
                                 <th>No</th>
                                 <th>Kode Customer</th>
                                 <th>Kode Barang</th>
+                                <th>Status Produksi</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -36,6 +37,15 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->customer->kode_customer }}</td>
                                     <td>{{ $item->barang->kode_barang }}</td>
+
+                                    <td>
+                                        @if ($item->status_produksi === 'FINISHED')
+                                            <span class="badge badge-success"> {{ $item->status_produksi }}
+                                            </span>
+                                        @else
+                                            <span class="badge badge-danger"> {{ $item->status_produksi }}
+                                        @endif
+                                    </td>
                                     <td class="text-center">
 
                                         <a href="" class="btn btn-info btn-search ">
@@ -104,13 +114,14 @@
                                                             <div class="col-lg-6">
                                                                 <label>Deadline Produksi</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->deadline_produksi }}" disabled >
+                                                                    value="{{ $item->deadline_produksi }}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-4">
                                                             <div class="col-lg-12">
                                                                 <label>Status Produksi</label>
-                                                                <input class="form-control" value="{{$item->status_produksi}}" disabled>
+                                                                <input class="form-control"
+                                                                    value="{{ $item->status_produksi }}" disabled>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -123,7 +134,8 @@
                                             </div>
                                         </div>
                                         {{-- Close Modal --}}
-                                        <form action="{{route('jadwal-produksi-delete', $item->id)}}" class="d-inline" method="POST">
+                                        <form action="{{ route('jadwal-produksi-delete', $item->id) }}" class="d-inline"
+                                            method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger btn-search"
