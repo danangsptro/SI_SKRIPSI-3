@@ -48,7 +48,7 @@
                                     </td>
                                     <td class="text-center">
 
-                                        <a href="" class="btn btn-info btn-search ">
+                                        <a href="{{route('jadwal-produksi-edit', $item->id)}}" class="btn btn-info btn-search ">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                         {{-- button modal --}}

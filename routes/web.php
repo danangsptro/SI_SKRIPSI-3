@@ -34,6 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/jadwal-produksi', 'jadwalProduksiController@index')->name('jadwal-produksi');
         Route::get('/jadwal-produksi-create', 'jadwalProduksiController@create')->name('jadwal-produksi-create');
         Route::post('/jadwal-produksi-store', 'jadwalProduksiController@store')->name('jadwal-produksi-store');
+        Route::get('/jadwal-produksi-edit/{id}', 'jadwalProduksiController@edit')->name('jadwal-produksi-edit');
+        Route::post('/jadwal-produksi-update/{id}', 'jadwalProduksiController@update')->name('jadwal-produksi-update');
         Route::delete('/jadwal-produksi-delete/{id}', 'jadwalProduksiController@delete')->name('jadwal-produksi-delete');
+        // Barang selesai produksi
+        Route::get('/selesai-produksi', 'barangSelesaiController@index')->name('barang-selesai');
     });
 });
