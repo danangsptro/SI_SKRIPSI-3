@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarangSelesaisTable extends Migration
+class CreateSuratJalansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateBarangSelesaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('barang_selesais', function (Blueprint $table) {
+        Schema::create('surat_jalans', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_masuk_barang');
+            $table->date('tanggal_surat_jalan');
+            $table->string('nomor_surat_jalan');
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('barang_id')->unsigned();
-            $table->integer('total_barang');
+            $table->number('total_barang_kirim');
             $table->string('satuan');
-            $table->string('no_label');
-            $table->string('status');
+            $table->text('alamat');
+            $table->string('expedisi');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
@@ -36,6 +37,6 @@ class CreateBarangSelesaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barang_selesais');
+        Schema::dropIfExists('surat_jalans');
     }
 }

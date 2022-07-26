@@ -4,12 +4,11 @@ namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BarangSelesai extends Model
+class suratJalan extends Model
 {
-    protected $guarded = [];
+    protected $guarded= [];
 
-    public function customer()
-    {
+    public function customer (){
         return $this->belongsTo(Customer::class, 'customer_id');
     }
 
@@ -17,4 +16,5 @@ class BarangSelesai extends Model
     {
         return $this->belongsTo(Barang::class, 'barang_id');
     }
+
 }

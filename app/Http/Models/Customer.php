@@ -10,4 +10,14 @@ class Customer extends Model
     {
         return $this->hasMany(JadwalProduksi::class, 'customer_id', 'id');
     }
+
+    public function BarangSelesai()
+    {
+        return $this->hasMany(BarangSelesai::class, 'customer_id', 'id');
+    }
+
+    public function suratJalan()
+    {
+        return $this->hasMany(SuratJalan::class, 'customer_id', 'id');
+    }
 }

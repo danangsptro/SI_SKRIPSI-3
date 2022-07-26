@@ -36,7 +36,67 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Form:</h6>
                 <a class="collapse-item" href="{{ route('jadwal-produksi') }}">Jadwal Produksi</a>
-                <a class="collapse-item" href="{{route('barang-selesai')}}">Barang Selesai</a>
+                <a class="collapse-item" href="{{route('barang-selesai-produksi')}}">Barang Selesai</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Sales</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Form:</h6>
+                <a class="collapse-item" href="{{route('surat-jalan')}}">Surat Jalan</a>
+                {{-- <a class="collapse-item" href="">Barang Selesai</a> --}}
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+            aria-expanded="true" aria-controls="collapseFour">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Purchasing </span>
+        </a>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Form:</h6>
+                <a class="collapse-item" href="">Jadwal Produksi</a>
+                <a class="collapse-item" href="">Barang Selesai</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+            aria-expanded="true" aria-controls="collapseSix">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>MPIC</span>
+        </a>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Form:</h6>
+                <a class="collapse-item" href="">Jadwal Produksi</a>
+                <a class="collapse-item" href="">Barang Selesai</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
+            aria-expanded="true" aria-controls="collapseSeven">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Warehouse </span>
+        </a>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Form:</h6>
+                <a class="collapse-item" href="">Jadwal Produksi</a>
+                <a class="collapse-item" href="">Barang Selesai</a>
             </div>
         </div>
     </li>
@@ -119,7 +179,14 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-
+    <div class="sidebar-heading">
+        Register Pegawai
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('register-user')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Register Akun</span></a>
+    </li>
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

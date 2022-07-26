@@ -38,6 +38,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/jadwal-produksi-update/{id}', 'jadwalProduksiController@update')->name('jadwal-produksi-update');
         Route::delete('/jadwal-produksi-delete/{id}', 'jadwalProduksiController@delete')->name('jadwal-produksi-delete');
         // Barang selesai produksi
-        Route::get('/selesai-produksi', 'barangSelesaiController@index')->name('barang-selesai');
+        Route::get('/selesai-produksi', 'barangSelesaiController@index')->name('barang-selesai-produksi');
+        Route::get('/selesai-produksi-create', 'barangSelesaiController@create')->name('barang-selesai-produksi-create');
+        Route::delete('/selesai-produksi-delete/{id}', 'barangSelesaiController@delete')->name('barang-selesai-produksi-delete');
+        // Register User
+        Route::get('/register-user', 'registerPegawaiController@index')->name('register-user');
+        Route::post('/register-user-store', 'registerPegawaiController@store')->name('register-user-store');
+        Route::delete('/register-user-delete/{id}', 'registerPegawaiController@delete')->name('register-user-delete');
+        // Surat Jalan
+        Route::get('/surat-jalan', 'suratJalanController@index')->name('surat-jalan');
+        Route::get('/surat-jalan-create', 'suratJalanController@create')->name('surat-jalan-create');
+        Route::post('/surat-jalan-store', 'suratJalanController@store')->name('surat-jalan-store');
     });
 });

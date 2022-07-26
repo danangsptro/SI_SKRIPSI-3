@@ -1,23 +1,23 @@
 @extends('masterBackend')
-@section('title', 'DATA | JADWAL PRODUKSI')
+@section('title', 'DATA | BARANG SELESAI PRODUKSI')
 
 
 @section('backend')
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Jadwal Produksi</h1>
+        <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Barang Selesai Produksi</h1>
         <hr>
-        <a href="{{ route('jadwal-produksi-create') }}" class="btn btn-primary btn-icon-split mb-4">
+        {{-- <a href="{{ route('barang-selesai-produksi-create') }}" class="btn btn-primary btn-icon-split mb-4">
             <span class="icon text-white-50">
                 <i class="menu-icon fa fa-plus-square"></i>
             </span>
             <span class="text">Add New</span>
-        </a>
+        </a> --}}
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Jadwal Produksi</h6>
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Selesai Produksi</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -27,7 +27,7 @@
                                 <th>No</th>
                                 <th>Kode Customer</th>
                                 <th>Kode Barang</th>
-                                <th>Status Produksi</th>
+                                <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -39,16 +39,21 @@
                                     <td>{{ $item->barang->kode_barang }}</td>
 
                                     <td>
-                                        @if ($item->status_produksi === 'FINISHED')
-                                            <span class="badge badge-success"> {{ $item->status_produksi }}
+                                        @if ($item->status === 'WHS')
+                                            <span class="badge badge-success"> {{ $item->status }}
                                             </span>
-                                        @else
-                                            <span class="badge badge-danger"> {{ $item->status_produksi }}
+                                        @elseif($item->status === 'PROD')
+                                            <span class="badge badge-warning"> {{ $item->status }}
+                                            </span>
+                                        @elseif($item->status === '-')
+                                            <span class="badge badge-danger"> Tolong Isi Status
+                                            </span>
                                         @endif
                                     </td>
                                     <td class="text-center">
 
-                                        <a href="{{route('jadwal-produksi-edit', $item->id)}}" class="btn btn-info btn-search ">
+                                        <a href="{{ route('jadwal-produksi-edit', $item->id) }}"
+                                            class="btn btn-info btn-search ">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                         {{-- button modal --}}
@@ -76,7 +81,7 @@
                                                             <div class="col-lg-12">
                                                                 <label>Tanggal Dibuat Jadwal</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->jadwal_dibuat }}" disabled>
+                                                                    value="{{ $item->tanggal_masuk_barang }}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-4">
@@ -107,21 +112,14 @@
                                                         </div>
                                                         <div class="row mt-4">
                                                             <div class="col-lg-6">
-                                                                <label>Tanggal Produksi</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->tanggal_produksi }}" disabled>
+                                                                <label>Status</label>
+                                                                <input class="form-control" value="{{ $item->no_label }}"
+                                                                    disabled>
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <label>Deadline Produksi</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->deadline_produksi }}" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-4">
-                                                            <div class="col-lg-12">
-                                                                <label>Status Produksi</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->status_produksi }}" disabled>
+                                                                <label>Status</label>
+                                                                <input class="form-control" value="{{ $item->status }}"
+                                                                    disabled>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,8 +132,7 @@
                                             </div>
                                         </div>
                                         {{-- Close Modal --}}
-                                        <form action="{{ route('jadwal-produksi-delete', $item->id) }}" class="d-inline"
-                                            method="POST">
+                                        <form action="{{route('barang-selesai-produksi-delete', $item->id)}}" class="d-inline" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger btn-search"

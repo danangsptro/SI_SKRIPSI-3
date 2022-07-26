@@ -6,9 +6,9 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Jadwal Produksi</h1>
+        <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Surat Jalan</h1>
         <hr>
-        <a href="{{ route('jadwal-produksi-create') }}" class="btn btn-primary btn-icon-split mb-4">
+        <a href="{{ route('surat-jalan-create') }}" class="btn btn-primary btn-icon-split mb-4">
             <span class="icon text-white-50">
                 <i class="menu-icon fa fa-plus-square"></i>
             </span>
@@ -17,7 +17,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Jadwal Produksi</h6>
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Surat Jalan</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -27,7 +27,6 @@
                                 <th>No</th>
                                 <th>Kode Customer</th>
                                 <th>Kode Barang</th>
-                                <th>Status Produksi</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -38,17 +37,9 @@
                                     <td>{{ $item->customer->kode_customer }}</td>
                                     <td>{{ $item->barang->kode_barang }}</td>
 
-                                    <td>
-                                        @if ($item->status_produksi === 'FINISHED')
-                                            <span class="badge badge-success"> {{ $item->status_produksi }}
-                                            </span>
-                                        @else
-                                            <span class="badge badge-danger"> {{ $item->status_produksi }}
-                                        @endif
-                                    </td>
                                     <td class="text-center">
 
-                                        <a href="{{route('jadwal-produksi-edit', $item->id)}}" class="btn btn-info btn-search ">
+                                        <a href="" class="btn btn-info btn-search ">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                         {{-- button modal --}}
@@ -74,9 +65,14 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-lg-12">
-                                                                <label>Tanggal Dibuat Jadwal</label>
+                                                                <label>Nomor Surat Jalan</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->jadwal_dibuat }}" disabled>
+                                                                    value="{{ $item->nomor_surat_jalan }}" disabled>
+                                                            </div>
+                                                            <div class="col-lg-12 mt-4">
+                                                                <label>Tanggal Surat Jalan</label>
+                                                                <input class="form-control"
+                                                                    value="{{ $item->tanggal_surat_jalan }}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-4">
@@ -95,35 +91,33 @@
                                                         </div>
                                                         <div class="row mt-4">
                                                             <div class="col-lg-6">
-                                                                <label>Total Barang</label>
+                                                                <label>Alamat</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->total_barang }}" disabled>
+                                                                    value="{{ $item->alamat }} "
+                                                                    disabled>
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <label>Satuan</label>
-                                                                <input class="form-control" value="{{ $item->satuan }}"
+                                                                <label>Expedisi</label>
+                                                                <input class="form-control"
+                                                                    value="{{ $item->expedisi }} "
                                                                     disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-4">
                                                             <div class="col-lg-6">
-                                                                <label>Tanggal Produksi</label>
+                                                                <label>Total Barang</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->tanggal_produksi }}" disabled>
+                                                                    value="{{ $item->total_barang_kirim }} "
+                                                                    disabled>
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <label>Deadline Produksi</label>
+                                                                <label>Satuan</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->deadline_produksi }}" disabled>
+                                                                    value="{{ $item->satuan }} "
+                                                                    disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-4">
-                                                            <div class="col-lg-12">
-                                                                <label>Status Produksi</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->status_produksi }}" disabled>
-                                                            </div>
-                                                        </div>
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -134,7 +128,7 @@
                                             </div>
                                         </div>
                                         {{-- Close Modal --}}
-                                        <form action="{{ route('jadwal-produksi-delete', $item->id) }}" class="d-inline"
+                                        <form action="" class="d-inline"
                                             method="POST">
                                             @csrf
                                             @method('delete')
