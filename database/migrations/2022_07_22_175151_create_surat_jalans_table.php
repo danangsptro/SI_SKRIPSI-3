@@ -19,7 +19,7 @@ class CreateSuratJalansTable extends Migration
             $table->string('nomor_surat_jalan');
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('barang_id')->unsigned();
-            $table->number('total_barang_kirim');
+            $table->bigInteger('total_barang_kirim');
             $table->string('satuan');
             $table->text('alamat');
             $table->string('expedisi');
