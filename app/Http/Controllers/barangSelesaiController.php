@@ -6,6 +6,7 @@ use App\Http\Models\Barang;
 use App\Http\Models\BarangSelesai;
 use App\Http\Models\Customer;
 use App\Http\Models\JadwalProduksi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class barangSelesaiController extends Controller
@@ -51,12 +52,31 @@ class barangSelesaiController extends Controller
         return redirect('dashboard/jadwal-produksi');
     }
 
+    public function edit($id)
+    {
+        $data = BarangSelesai::find($id);
+        $customer = Customer::all();
+        $barang = Barang::all();
+        return view('page.barang-selesai-produksi.edit', compact('data', 'customer', 'barang'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = BarangSelesai::find($id);
+        $data->status = 'PROD';
+        $data->tanggal_masuk_barang = Carbon::today();
+        $data->save();
+
+        toastr()->success('Data has been saved successfully!');
+        return redirect('dashboard/selesai-produksi');
+    }
+
     public function delete($id)
     {
         $data = BarangSelesai::find($id);
         $data->delete();
 
-        if($data){
+        if ($data) {
             toastr()->success('Data has been delete successfully!');
             return redirect()->back();
         }

@@ -4,10 +4,10 @@ namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JadwalProduksi extends Model
+class JadwalProduksiSales extends Model
 {
-
     protected $guarded = [];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');

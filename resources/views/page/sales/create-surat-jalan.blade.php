@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nomor Surat Jalan</label>
                                 <input type="text" class="form-control" name="nomor_surat_jalan" required
@@ -83,9 +83,9 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Alamat</label>
                                 <input type="text" class="form-control" name="alamat" required
@@ -141,7 +141,7 @@
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary"
                             onclick="return confirm('Data yang di masukan sudah benar ?')">Submit</button>
-                        <a href="" type="submit" class="btn btn-dark">Back</a>
+                        <a href="{{route('surat-jalan')}}" type="submit" class="btn btn-dark">Back</a>
                     </div>
                 </form>
             </div>

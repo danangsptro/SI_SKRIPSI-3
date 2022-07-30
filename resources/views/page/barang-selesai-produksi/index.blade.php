@@ -25,8 +25,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Customer</th>
-                                <th>Kode Barang</th>
+                                <th>Tanggal Masuk Barang</th>
+                                <th>Nama Customer</th>
+                                <th>Nama Barang</th>
+                                <th>Total Barang</th>
+                                <th>Satuan</th>
+                                <th>No Label</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -35,8 +39,15 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->customer->kode_customer }}</td>
-                                    <td>{{ $item->barang->kode_barang }}</td>
+                                    <td>{{ $item->tanggal_masuk_barang ?? '-' }}</td>
+                                    <td>{{ $item->nama_customer }}</td>
+                                    <td>{{ $item->nama_barang }}</td>
+                                    <td>{{ $item->total_barang }}</td>
+                                    <td>{{ $item->satuan }}</td>
+                                    <td>{{ $item->no_label }}</td>
+
+                                    {{-- <td>{{ $item->customer->kode_customer }}</td>
+                                    <td>{{ $item->barang->kode_barang }}</td> --}}
 
                                     <td>
                                         @if ($item->status === 'WHS')
@@ -45,23 +56,37 @@
                                         @elseif($item->status === 'PROD')
                                             <span class="badge badge-warning"> {{ $item->status }}
                                             </span>
-                                        @elseif($item->status === '-')
+                                        @elseif($item->status === null)
                                             <span class="badge badge-danger"> Tolong Isi Status
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="text-center">
+                                    <td>
+                                        @if ($item === null)
+                                            <form action="{{ route('barang-selesai-produksi-update', $item->id) }}"
+                                                class="d-inline" method="POST">
+                                                @csrf
+                                                @method('post')
+                                                <button class="btn btn-success btn-sm"
+                                                    onclick="return confirm('ANDA YAKIN INGIN UBAH STATUS ?')">
+                                                    UBAH STATUS PROD
 
-                                        <a href="{{ route('jadwal-produksi-edit', $item->id) }}"
+                                                </button>
+                                            </form>
+                                            @else
+                                            -
+                                        @endif
+                                    </td>
+                                    {{-- <td class="text-center">
+
+                                        <a href="{{route('barang-selesai-produksi-edit', $item->id)}}"
                                             class="btn btn-info btn-search ">
                                             <i class="fas fa-pen"></i>
                                         </a>
-                                        {{-- button modal --}}
                                         <a href="" class="btn btn-warning btn-search" data-toggle="modal"
                                             data-target="#exampleModal{{ $loop->iteration }}">
                                             <i class="fas fa-info-circle"></i>
                                         </a>
-                                        <!-- Modal -->
                                         <div class="modal fade text-left" id="exampleModal{{ $loop->iteration }}"
                                             tabindex="-1" aria-labelledby="exampleModalLabel{{ $loop->iteration }}"
                                             aria-hidden="true">
@@ -131,7 +156,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- Close Modal --}}
                                         <form action="{{route('barang-selesai-produksi-delete', $item->id)}}" class="d-inline" method="POST">
                                             @csrf
                                             @method('delete')
@@ -140,7 +164,7 @@
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

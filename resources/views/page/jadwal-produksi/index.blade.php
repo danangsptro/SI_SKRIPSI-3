@@ -8,12 +8,6 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Jadwal Produksi</h1>
         <hr>
-        <a href="{{ route('jadwal-produksi-create') }}" class="btn btn-primary btn-icon-split mb-4">
-            <span class="icon text-white-50">
-                <i class="menu-icon fa fa-plus-square"></i>
-            </span>
-            <span class="text">Add New</span>
-        </a>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -28,6 +22,7 @@
                                 <th>Kode Customer</th>
                                 <th>Kode Barang</th>
                                 <th>Status Produksi</th>
+                                <th class="text-center">Update Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -47,14 +42,26 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
+                                        @if ($item->status_produksi === 'UNFINISHED')
+                                            <form action="{{ route('jadwal-produksi-update', $item->id) }}" class="d-inline"
+                                                method="POST">
+                                                @csrf
+                                                @method('post')
+                                                <button class="btn btn-success"
+                                                    onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
+                                                    KLIK APPROVED!
 
-                                        <a href="{{route('jadwal-produksi-edit', $item->id)}}" class="btn btn-info btn-search ">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <span class="text-success">Sudah Update</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
                                         {{-- button modal --}}
-                                        <a href="" class="btn btn-warning btn-search" data-toggle="modal"
+                                        <a href="" class="btn btn-warning" data-toggle="modal"
                                             data-target="#exampleModal{{ $loop->iteration }}">
-                                            <i class="fas fa-info-circle"></i>
+                                            Detail
                                         </a>
                                         <!-- Modal -->
                                         <div class="modal fade text-left" id="exampleModal{{ $loop->iteration }}"
@@ -134,7 +141,7 @@
                                             </div>
                                         </div>
                                         {{-- Close Modal --}}
-                                        <form action="{{ route('jadwal-produksi-delete', $item->id) }}" class="d-inline"
+                                        {{-- <form action="{{ route('jadwal-produksi-delete', $item->id) }}" class="d-inline"
                                             method="POST">
                                             @csrf
                                             @method('delete')
@@ -142,7 +149,7 @@
                                                 onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach

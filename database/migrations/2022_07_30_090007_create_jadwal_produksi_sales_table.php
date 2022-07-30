@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJadwalProduksisTable extends Migration
+class CreateJadwalProduksiSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateJadwalProduksisTable extends Migration
      */
     public function up()
     {
-        Schema::create('jadwal_produksis', function (Blueprint $table) {
+        Schema::create('jadwal_produksi_sales', function (Blueprint $table) {
             $table->id();
             $table->date('jadwal_dibuat');
             $table->bigInteger('customer_id')->unsigned();
@@ -37,6 +37,6 @@ class CreateJadwalProduksisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jadwal_produksis');
+        Schema::dropIfExists('jadwal_produksi_sales');
     }
 }

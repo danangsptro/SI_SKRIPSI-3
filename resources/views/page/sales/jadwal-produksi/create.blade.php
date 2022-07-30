@@ -12,10 +12,10 @@
     <div class="container card-content">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Create Jadwal Produksi</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Create Jadwal Produksi Sales</h6>
             </div>
             <div class="container-fluid mt-4 mb-4">
-                <form method="POST" action="{{ route('jadwal-produksi-store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('jadwal-produksi-sales-store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
@@ -125,30 +125,20 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="control-label">Status</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Option</label>
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01" name="status_produksi">
-                                        <option selected>Pilih Option</option>
-                                        <option value="FINISHED">FINISHED</option>
-                                        <option value="UNFINISHED">UNFINISHED</option>
-                                    </select>
-                                    @error('status_produksi')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                <input type="hidden" class="form-control" name="status_produksi" value="UNFINISHED" required>
+
                             </div>
                         </div>
+
                     </div>
 
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary"
                             onclick="return confirm('Data yang di masukan sudah benar ?')">Submit</button>
-                        <a href="{{ route('jadwal-produksi') }}" type="submit" class="btn btn-dark">Back</a>
+                        <a href="{{ route('jadwal-produksi-sales') }}" type="submit" class="btn btn-dark">Back</a>
                     </div>
                 </form>
             </div>

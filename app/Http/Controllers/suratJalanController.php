@@ -30,7 +30,7 @@ class suratJalanController extends Controller
             'tanggal_surat_jalan' => 'required|max:20',
             'customer_id' => 'required|max:10',
             'barang_id' => 'required|max:10',
-            'nomor_surat_jalan' => 'required|max:20',
+            // 'nomor_surat_jalan' => 'required|max:20',
             'satuan' => 'required|max:20',
             'total_barang_kirim' => 'required|max:20',
             'alamat' => 'required|max:50',
@@ -41,7 +41,7 @@ class suratJalanController extends Controller
         $data->tanggal_surat_jalan = $validate['tanggal_surat_jalan'];
         $data->customer_id = $validate['customer_id'];
         $data->barang_id = $validate['barang_id'];
-        $data->nomor_surat_jalan = $data->id + 1 . '/SJ/ASG/07/2022/';
+        $data->nomor_surat_jalan = $data->id + 1 . '/SJ/ASG/07/2022';
         $data->satuan = $validate['satuan'];
         $data->total_barang_kirim = $validate['total_barang_kirim'];
         $data->alamat = $validate['alamat'];

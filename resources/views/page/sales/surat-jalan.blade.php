@@ -25,6 +25,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nomor Surat Jalan</th>
                                 <th>Kode Customer</th>
                                 <th>Kode Barang</th>
                                 <th class="text-center">Action</th>
@@ -34,6 +35,7 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nomor_surat_jalan }}</td>
                                     <td>{{ $item->customer->kode_customer }}</td>
                                     <td>{{ $item->barang->kode_barang }}</td>
 

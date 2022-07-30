@@ -32,15 +32,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/barang-delete/{id}', 'barangController@delete')->name('barang-delete');
         // Jadwal Produksi
         Route::get('/jadwal-produksi', 'jadwalProduksiController@index')->name('jadwal-produksi');
-        Route::get('/jadwal-produksi-create', 'jadwalProduksiController@create')->name('jadwal-produksi-create');
-        Route::post('/jadwal-produksi-store', 'jadwalProduksiController@store')->name('jadwal-produksi-store');
         Route::get('/jadwal-produksi-edit/{id}', 'jadwalProduksiController@edit')->name('jadwal-produksi-edit');
         Route::post('/jadwal-produksi-update/{id}', 'jadwalProduksiController@update')->name('jadwal-produksi-update');
         Route::delete('/jadwal-produksi-delete/{id}', 'jadwalProduksiController@delete')->name('jadwal-produksi-delete');
+        // Jadwal Produksi Sales
+        Route::get('/jadwal-produksi-sales', 'jadwalProduksiController@jadwalProduksiSales')->name('jadwal-produksi-sales');
+        Route::get('/jadwal-produksi-sales-create', 'jadwalProduksiController@createJadwalProduksiSales')->name('jadwal-produksi-sales-create');
+        Route::post('/jadwal-produksi-sales-store', 'jadwalProduksiController@storeJadwalProduksiSales')->name('jadwal-produksi-sales-store');
         // Barang selesai produksi
         Route::get('/selesai-produksi', 'barangSelesaiController@index')->name('barang-selesai-produksi');
         Route::get('/selesai-produksi-create', 'barangSelesaiController@create')->name('barang-selesai-produksi-create');
         Route::delete('/selesai-produksi-delete/{id}', 'barangSelesaiController@delete')->name('barang-selesai-produksi-delete');
+        Route::get('/selesai-produksi-edit/{id}', 'barangSelesaiController@edit')->name('barang-selesai-produksi-edit');
+        Route::post('/selesai-produksi-update/{id}', 'barangSelesaiController@update')->name('barang-selesai-produksi-update');
         // Register User
         Route::get('/register-user', 'registerPegawaiController@index')->name('register-user');
         Route::post('/register-user-store', 'registerPegawaiController@store')->name('register-user-store');
@@ -49,5 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surat-jalan', 'suratJalanController@index')->name('surat-jalan');
         Route::get('/surat-jalan-create', 'suratJalanController@create')->name('surat-jalan-create');
         Route::post('/surat-jalan-store', 'suratJalanController@store')->name('surat-jalan-store');
+        // SPK
+        Route::get('/spk', 'spkController@index')->name('spk');
+        Route::get('/spk/{id}', 'spKController@edit')->name('spk-edit');
+        Route::post('/spk-update/{id}', 'spKController@update')->name('spk-update');
     });
 });

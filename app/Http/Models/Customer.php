@@ -11,13 +11,23 @@ class Customer extends Model
         return $this->hasMany(JadwalProduksi::class, 'customer_id', 'id');
     }
 
-    public function BarangSelesai()
+    public function JadwalProduksiSales()
     {
-        return $this->hasMany(BarangSelesai::class, 'customer_id', 'id');
+        return $this->hasMany(JadwalProduksiSales::class, 'customer_id', 'id');
     }
+
+    // public function BarangSelesai()
+    // {
+    //     return $this->hasMany(BarangSelesai::class, 'customer_id', 'id');
+    // }
 
     public function suratJalan()
     {
         return $this->hasMany(SuratJalan::class, 'customer_id', 'id');
+    }
+
+    public function spk()
+    {
+        return $this->hashMasny(Spk::class, 'customer_id', 'id');
     }
 }
