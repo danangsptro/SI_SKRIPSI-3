@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -72,8 +72,9 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Form:</h6>
-                    <a class="collapse-item" href="">Jadwal Produksi</a>
-                    <a class="collapse-item" href="">Barang Selesai</a>
+                    <a class="collapse-item" href="{{ route('popurchasing') }}">Pembuatan PO</a>
+                    <a class="collapse-item" href="{{ route('receiving-barang') }}">Receiving Barang</a>
+                    <a class="collapse-item" href="{{ route('laporan-stock-purchasing') }}">Laporan Barang</a>
                 </div>
             </div>
         </li>
@@ -107,8 +108,10 @@
             <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Form:</h6>
-                    <a class="collapse-item" href="">Jadwal Produksi</a>
-                    <a class="collapse-item" href="">Barang Selesai</a>
+                    <a class="collapse-item" href="{{ route('barang-masuk') }}">Barang Masuk</a>
+                    <a class="collapse-item" href="{{ route('barang-keluar') }}">Barang Keluar</a>
+                    <a class="collapse-item" href="{{ route('warehouse-laporan-stock-barang') }}">Laporan Stock
+                        Barang</a>
                 </div>
             </div>
         </li>
@@ -127,6 +130,13 @@
             <a class="nav-link" href="{{ route('barang') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Barang</span></a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('supplier') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Supplier</span></a>
         </li>
 
         <!-- Divider -->

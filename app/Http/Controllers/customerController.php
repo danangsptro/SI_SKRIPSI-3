@@ -42,7 +42,7 @@ class customerController extends Controller
         return view('page.customer.edit', compact('data'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $validate = $request->validate([
             'nama_customer' => 'required|min:3',
@@ -66,6 +66,5 @@ class customerController extends Controller
 
         toastr()->success('Data has been edit successfully!');
         return redirect()->back();
-       }
+    }
 }
-

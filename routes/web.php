@@ -41,7 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/jadwal-produksi-sales-store', 'jadwalProduksiController@storeJadwalProduksiSales')->name('jadwal-produksi-sales-store');
         // Barang selesai produksi
         Route::get('/selesai-produksi', 'barangSelesaiController@index')->name('barang-selesai-produksi');
-        Route::get('/selesai-produksi-create', 'barangSelesaiController@create')->name('barang-selesai-produksi-create');
         Route::delete('/selesai-produksi-delete/{id}', 'barangSelesaiController@delete')->name('barang-selesai-produksi-delete');
         Route::get('/selesai-produksi-edit/{id}', 'barangSelesaiController@edit')->name('barang-selesai-produksi-edit');
         Route::post('/selesai-produksi-update/{id}', 'barangSelesaiController@update')->name('barang-selesai-produksi-update');
@@ -57,5 +56,24 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/spk', 'spkController@index')->name('spk');
         Route::get('/spk/{id}', 'spKController@edit')->name('spk-edit');
         Route::post('/spk-update/{id}', 'spKController@update')->name('spk-update');
+        // Warehouse
+        Route::get('/warehouse-barang-masuk', 'warehouseController@barangMasuk')->name('barang-masuk');
+        Route::get('/warehouse-barang-keluar', 'warehouseController@barangKeluar')->name('barang-keluar');
+        Route::get('/warehouse-laporan-stock-barang', 'warehouseController@laporanStockBarang')->name('warehouse-laporan-stock-barang');
+        // Purchasing
+        Route::get('/form-pembuatan-po', 'popurchasingController@index')->name('popurchasing');
+        Route::get('/create-po-purchasing', 'popurchasingController@create')->name('popurchasing-create');
+        Route::post('/store-po-purchasing', 'popurchasingController@store')->name('popurchasing-store');
+        Route::get('/receiving-barang', 'popurchasingController@receivingBarang')->name('receiving-barang');
+        Route::get('/edit-validasi-receiving/{id}', 'popurchasingController@editReceiving')->name('edit-validasi-receiving');
+        Route::post('/update-validasi-receiving/{id}', 'popurchasingController@updateReceiving')->name('update-validasi-receiving');
+        Route::get('/laporan-stock-purchasing', 'popurchasingController@stock')->name('laporan-stock-purchasing');
+        // Supplier
+        Route::get('/supplier', 'supplierController@index')->name('supplier');
+        Route::get('/create-supplier', 'supplierController@create')->name('supplier-create');
+        Route::post('/store-supplier', 'supplierController@store')->name('store-supplier');
+        Route::post('/update-supplier/{id}', 'supplierController@update')->name('update-supplier');
+        Route::get('/edit-supplier/{id}', 'supplierController@edit')->name('edit-supplier');
+        Route::delete('/delete-supplier/{id}', 'supplierController@delete')->name('delete-supplier');
     });
 });

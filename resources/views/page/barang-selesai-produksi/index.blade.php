@@ -4,17 +4,8 @@
 
 @section('backend')
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Barang Selesai Produksi</h1>
         <hr>
-        {{-- <a href="{{ route('barang-selesai-produksi-create') }}" class="btn btn-primary btn-icon-split mb-4">
-            <span class="icon text-white-50">
-                <i class="menu-icon fa fa-plus-square"></i>
-            </span>
-            <span class="text">Add New</span>
-        </a> --}}
-        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Selesai Produksi</h6>
@@ -62,7 +53,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($item === null)
+                                        @if ($item->status === null)
                                             <form action="{{ route('barang-selesai-produksi-update', $item->id) }}"
                                                 class="d-inline" method="POST">
                                                 @csrf
@@ -73,98 +64,10 @@
 
                                                 </button>
                                             </form>
-                                            @else
+                                        @else
                                             -
                                         @endif
                                     </td>
-                                    {{-- <td class="text-center">
-
-                                        <a href="{{route('barang-selesai-produksi-edit', $item->id)}}"
-                                            class="btn btn-info btn-search ">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                        <a href="" class="btn btn-warning btn-search" data-toggle="modal"
-                                            data-target="#exampleModal{{ $loop->iteration }}">
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
-                                        <div class="modal fade text-left" id="exampleModal{{ $loop->iteration }}"
-                                            tabindex="-1" aria-labelledby="exampleModalLabel{{ $loop->iteration }}"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="exampleModalLabel{{ $loop->iteration }}">Detail Jadwal
-                                                            Produksi</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <label>Tanggal Dibuat Jadwal</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->tanggal_masuk_barang }}" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-4">
-                                                            <div class="col-lg-6">
-                                                                <label>Nama Customer</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->customer->nama_customer }} - {{ $item->customer->kode_customer }}"
-                                                                    disabled>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <label>Nama Barang</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->barang->nama_barang }} - {{ $item->barang->kode_barang }}"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-4">
-                                                            <div class="col-lg-6">
-                                                                <label>Total Barang</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->total_barang }}" disabled>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <label>Satuan</label>
-                                                                <input class="form-control" value="{{ $item->satuan }}"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-4">
-                                                            <div class="col-lg-6">
-                                                                <label>Status</label>
-                                                                <input class="form-control" value="{{ $item->no_label }}"
-                                                                    disabled>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <label>Status</label>
-                                                                <input class="form-control" value="{{ $item->status }}"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <form action="{{route('barang-selesai-produksi-delete', $item->id)}}" class="d-inline" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger btn-search"
-                                                onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

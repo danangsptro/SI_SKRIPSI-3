@@ -15,35 +15,98 @@
                 <h6 class="m-0 font-weight-bold text-primary">Edit Jadwal Produksi</h6>
             </div>
             <div class="container-fluid mt-4 mb-4">
-                <form method="POST" action="{{ route('jadwal-produksi-update', $data->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('update-validasi-receiving', $data->id)}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Tanggal Dibuat Jadwal</label>
-                                <input type="date" class="form-control" name="jadwal_dibuat" required
-                                    value="{{ $data->jadwal_dibuat }}">
-                                @error('jadwal_dibuat')
+                                <label>Tanggal Receiving</label>
+                                <input type="date" class="form-control" name="tangal_receiving" required
+                                    value="{{ $data->tangal_receiving }}">
+                                @error('tangal_receiving')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>No Receiving</label>
+                                <input type="text" class="form-control" name="no_receiving" required readonly
+                                    value="{{ $data->no_receiving }}">
+                                @error('no_receiving')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>No PO</label>
+                                <input type="text" class="form-control" name="no_po" required readonly
+                                    value="{{ $data->no_po }}">
+                                @error('no_po')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Nama Supplier</label>
+                                <input type="text" class="form-control" name="nama_supplier" required readonly
+                                    value="{{ $data->nama_supplier }}">
+                                @error('nama_supplier')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Total Barang PO</label>
+                                <input type="number" class="form-control" name="total_barang_po" required readonly
+                                    value="{{ $data->total_barang_po }}">
+                                @error('total_barang_po')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Total Barang PO</label>
+                                <input type="number" class="form-control" name="total_barang_po" required readonly
+                                    value="{{ $data->total_barang_po }}">
+                                @error('total_barang_po')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Total Barang yg diterima</label>
+                                <input type="number" class="form-control" name="total_barang_yg_diterima" required
+                                    placeholder="Total Barang yg diterima" value="{{ $data->total_barang_yg_diterima }}">
+                                @error('total_barang_yg_diterima')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Satuan</label>
+                                <input type="text" class="form-control" name="satuan" required readonly
+                                    placeholder="Total Barang yg diterima" value="{{ $data->satuan }}">
+                                @error('satuan')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="control-label mb-1">Nama Customer</label>
+                                <label class="control-label mb-1">No Receiving</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Options</label>
                                     </div>
-                                    {{-- <select class="custom-select" name="customer_id">
-                                        @foreach ($customer as $item)
-                                            <option value="{{ $item->id }}">
-                                                {{ old('customer_id') ?? $data->customer_id == $item->id ? 'selected' : '' }}
-                                                {{ $item->nama_customer }}
-                                        @endforeach
-                                    </select> --}}
                                     <select class="custom-select" name="customer_id">
                                         @foreach ($customer as $item)
                                             <option value="{{ $item->id }}"
@@ -115,7 +178,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>Tanggal Produksi</label>
@@ -137,34 +200,12 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="control-label">Status</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Option</label>
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01" name="status_produksi">
-                                        <option selected>Pilih Option</option>
-                                        <option value="FINISHED"
-                                            {{ $data->status_produksi == 'FINISHED' ? 'selected' : '' }}>FINISHED
-                                        </option>
-                                        <option value="UNFINISHED"
-                                            {{ $data->status_produksi == 'UNFINISHED' ? 'selected' : '' }}>UNFINISHED
-                                        </option>
-                                    </select>
-                                    @error('status_produksi')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
 
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary"
                             onclick="return confirm('Data yang di masukan sudah benar ?')">Submit</button>
-                        <a href="{{ route('jadwal-produksi-sales') }}" type="submit" class="btn btn-dark">Back</a>
+                        <a href="{{route('receiving-barang')}}" type="submit" class="btn btn-dark">Back</a>
                     </div>
                 </form>
             </div>
