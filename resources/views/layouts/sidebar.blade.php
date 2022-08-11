@@ -92,7 +92,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Form:</h6>
                     <a class="collapse-item" onclick="return confirm('Kopi dulu dong')">Jadwal Produksi</a>
-                    <a class="collapse-item" onclick="return confirm('Kopi dulu dong')" >Barang Selesai</a>
+                    <a class="collapse-item" onclick="return confirm('Kopi dulu dong')">Barang Selesai</a>
                 </div>
             </div>
         </li>
