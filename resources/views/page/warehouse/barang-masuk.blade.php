@@ -53,8 +53,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($item === null)
-                                            <form action="{{ route('barang-selesai-produksi-update', $item->id) }}"
+                                        @if ($item->status === 'PROD')
+                                            <form action="{{ route('warehouse-barangmasuktokeluar', $item->id) }}"
                                                 class="d-inline" method="POST">
                                                 @csrf
                                                 @method('post')

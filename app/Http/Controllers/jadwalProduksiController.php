@@ -115,9 +115,21 @@ class jadwalProduksiController extends Controller
     public function delete($id)
     {
         $data = JadwalProduksi::find($id);
-        $data->delete();
+        $sales = JadwalProduksiSales::find($id);
+        DB::transaction(function () use ($data, $sales) {
+            try {
+                if ($sales === null && $data === null) {
+                    toastr()->error('Data has been delete null!');
+                    return redirect()->back();
+                } else {
+                    $sales->delete();
+                    $data->delete();
+                }
+            } catch (\Throwable $th) {
+                $th->getMessage();
+            }
+        });
         toastr()->success('Data has been delete successfully!');
-
         return redirect()->back();
     }
 

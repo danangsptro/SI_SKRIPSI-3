@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -91,8 +91,8 @@
             <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Form:</h6>
-                    <a class="collapse-item" href="">Jadwal Produksi</a>
-                    <a class="collapse-item" href="">Barang Selesai</a>
+                    <a class="collapse-item" onclick="return confirm('Kopi dulu dong')">Jadwal Produksi</a>
+                    <a class="collapse-item" onclick="return confirm('Kopi dulu dong')">Barang Selesai</a>
                 </div>
             </div>
         </li>

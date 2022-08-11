@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Models\Barang;
+use App\Http\Models\barangMasuk;
 use App\Http\Models\BarangSelesai;
 use App\Http\Models\Customer;
 use App\Http\Models\Warehouse;
@@ -28,7 +29,7 @@ class barangSelesaiController extends Controller
         return view('page.barang-selesai-produksi.edit', compact('data', 'customer', 'barang'));
     }
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $data = BarangSelesai::find($id);
 
@@ -38,12 +39,14 @@ class barangSelesaiController extends Controller
                 $data->tanggal_masuk_barang = Carbon::today();
                 $data->save();
 
-                $whs = new Warehouse();
+                $whs = new barangMasuk();
                 $whs->nama_customer = $data->nama_customer;
                 $whs->nama_barang = $data->nama_barang;
-                $whs->satuan = $data->satuan;
                 $whs->total_barang_masuk = $data->total_barang;
+                $whs->satuan = $data->satuan;
                 $whs->no_label = $data->no_label;
+                $whs->status = $data->status;
+                $whs->tanggal_masuk_barang = $data->tanggal_masuk_barang;
                 $whs->save();
             } catch (\Throwable $th) {
                 $th->getMessage();

@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/warehouse-barang-masuk', 'warehouseController@barangMasuk')->name('barang-masuk');
         Route::get('/warehouse-barang-keluar', 'warehouseController@barangKeluar')->name('barang-keluar');
         Route::get('/warehouse-laporan-stock-barang', 'warehouseController@laporanStockBarang')->name('warehouse-laporan-stock-barang');
+        Route::post('/warehouse-barang-masuk-tokeluar/{id}', 'warehouseController@barangMasuktoKeluar')->name('warehouse-barangmasuktokeluar');
+        Route::post('/warehouse-barang-keluar-update/{id}', 'warehouseController@updateBarangKeluar')->name('warehouse-barang-keluar-update');
         // Purchasing
         Route::get('/form-pembuatan-po', 'popurchasingController@index')->name('popurchasing');
         Route::get('/create-po-purchasing', 'popurchasingController@create')->name('popurchasing-create');
