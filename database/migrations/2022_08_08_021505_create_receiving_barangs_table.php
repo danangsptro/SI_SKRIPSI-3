@@ -20,9 +20,9 @@ class CreateReceivingBarangsTable extends Migration
             $table->string('no_po', 20)->nullable();
             $table->string('no_surat_jalan', 20)->nullable();
             $table->string('nama_supplier', 50)->nullable();
-            $table->decimal('total_barang_po')->nullable();
-            $table->decimal('total_barang_yg_diterima')->nullable();
-            $table->decimal('sisa_po')->nullable();
+            $table->decimal('total_barang_po',13,2)->nullable();
+            $table->decimal('total_barang_yg_diterima',13,2)->nullable();
+            $table->decimal('sisa_po',13,2)->nullable();
             $table->string('satuan', 10)->nullable();
             $table->string('validasi', 10)->nullable();
             $table->timestamps();

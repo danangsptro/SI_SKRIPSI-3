@@ -53,4 +53,9 @@ class suratJalanController extends Controller
             return redirect('dashboard/surat-jalan');
         }
     }
+
+    public function downloadSurat($id){
+        $data = suratJalan::find($id);
+        dd($data);
+    }
 }

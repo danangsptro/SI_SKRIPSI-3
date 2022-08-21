@@ -9,10 +9,13 @@
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
         </div>
-        <div class=" shadow jumbotron jumbotron-fluid bg-white">
+        <div class=" shadow jumbotron jumbotron-fluid bg-dark">
             <div class="container">
-                <h1 class=" text-dark">Selamat Datang</h1>
-                <p class="lead text-dark">SISTEM SUPPLY CHAN UNTUK PRODUKSI BARANG DI PT.ARTHAWENA SAKTI GEMILANG.</p>
+                <h1 class=" text-white">Selamat Datang,
+                    {{ Auth::user()->position }} 👋
+
+                </h1>
+                <p class="lead text-warning">SISTEM SUPPLY CHAN UNTUK PRODUKSI BARANG DI PT.ARTHAWENA SAKTI GEMILANG.</p>
             </div>
         </div>
         <!-- Content Row -->
@@ -25,11 +28,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Produksi</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    Total Data Produksi</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produksi->count() }}</div>
                             </div>
                         </div>
                     </div>
@@ -43,11 +43,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Sales</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    Total Data Sales</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $sales->count() }}</div>
                             </div>
                         </div>
                     </div>
@@ -62,11 +59,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    Purchasing</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    Total Data Purchasing</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $purchasing->count() }}</div>
                             </div>
                         </div>
                     </div>
@@ -79,11 +73,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Warehouse</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    Total Data  Warehouse</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $warehouse->count() }}</div>
                             </div>
                         </div>
                     </div>

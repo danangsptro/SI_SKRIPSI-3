@@ -10,6 +10,7 @@ use App\Http\Models\JadwalProduksiSales;
 use App\Http\Models\Spk;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class jadwalProduksiController extends Controller
@@ -143,10 +144,16 @@ class jadwalProduksiController extends Controller
 
     public function createJadwalProduksiSales()
     {
-        $customer = Customer::all();
-        $barang = Barang::all();
+        $user = Auth::user()->position;
 
-        return view('page.sales.jadwal-produksi.create', compact('customer', 'barang'));
+        if ($user === 'sales' || $user === 'admin') {
+            $customer = Customer::all();
+            $barang = Barang::all();
+            return view('page.sales.jadwal-produksi.create', compact('customer', 'barang', 'user'));
+        } else {
+            toastr()->error('Access denied for user');
+            return redirect()->back();
+        }
     }
 
 

@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surat-jalan', 'suratJalanController@index')->name('surat-jalan');
         Route::get('/surat-jalan-create', 'suratJalanController@create')->name('surat-jalan-create');
         Route::post('/surat-jalan-store', 'suratJalanController@store')->name('surat-jalan-store');
+        Route::get('/download-surat ', 'suratJalanController@downloadSurat')->name('download-surat');
         // SPK
         Route::get('/spk', 'spkController@index')->name('spk');
         Route::get('/spk/{id}', 'spKController@edit')->name('spk-edit');
@@ -62,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/warehouse-laporan-stock-barang', 'warehouseController@laporanStockBarang')->name('warehouse-laporan-stock-barang');
         Route::post('/warehouse-barang-masuk-tokeluar/{id}', 'warehouseController@barangMasuktoKeluar')->name('warehouse-barangmasuktokeluar');
         Route::post('/warehouse-barang-keluar-update/{id}', 'warehouseController@updateBarangKeluar')->name('warehouse-barang-keluar-update');
+        Route::get('/laporan-stock-barang', 'warehouseController@printWarehouse')->name('laporan-stock-barang');
         // Purchasing
         Route::get('/form-pembuatan-po', 'popurchasingController@index')->name('popurchasing');
         Route::get('/create-po-purchasing', 'popurchasingController@create')->name('popurchasing-create');
@@ -69,7 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/receiving-barang', 'popurchasingController@receivingBarang')->name('receiving-barang');
         Route::get('/edit-validasi-receiving/{id}', 'popurchasingController@editReceiving')->name('edit-validasi-receiving');
         Route::post('/update-validasi-receiving/{id}', 'popurchasingController@updateReceiving')->name('update-validasi-receiving');
-        Route::get('/laporan-stock-purchasing', 'popurchasingController@stock')->name('laporan-stock-purchasing');
+        Route::get('/laporan-stock-purchasing', 'popurchasingController@stockPurchasing')->name('laporan-stock-purchasing');
+        Route::get('/print-stock-purchasing', 'popurchasingController@printStockPurchasing')->name('print-stock-purchasing');
         // Supplier
         Route::get('/supplier', 'supplierController@index')->name('supplier');
         Route::get('/create-supplier', 'supplierController@create')->name('supplier-create');
@@ -77,5 +80,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update-supplier/{id}', 'supplierController@update')->name('update-supplier');
         Route::get('/edit-supplier/{id}', 'supplierController@edit')->name('edit-supplier');
         Route::delete('/delete-supplier/{id}', 'supplierController@delete')->name('delete-supplier');
+        // Mpic
+        Route::get('/mpic-barang-masuk', 'mpicController@mpicBarangMasuk')->name('mpicBarangMasuk');
+        Route::get('/mpic-barang-keluar', 'mpicController@mpicBarangKeluar')->name('mpicBarangKeluar');
+        Route::get('/laporan-mpic', 'mpicController@laporanMpic')->name('laporanMpic');
     });
 });

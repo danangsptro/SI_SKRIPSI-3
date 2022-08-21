@@ -145,7 +145,88 @@
                                                 </button>
                                             </form>
                                         @else
-                                            -
+                                            {{-- button modal --}}
+                                            <a href="" class="btn btn-warning btn-search" data-toggle="modal"
+                                                data-target="#exampleModal{{ $loop->iteration }}">
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                            <!-- Modal -->
+                                            <div class="modal fade text-left" id="exampleModal{{ $loop->iteration }}"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel{{ $loop->iteration }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"
+                                                                id="exampleModalLabel{{ $loop->iteration }}">Detail Jadwal
+                                                                Produksi</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <label>Tanggal Dibuat Jadwal</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->jadwal_dibuat }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4">
+                                                                <div class="col-lg-6">
+                                                                    <label>Nama Customer</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->customer->nama_customer }} - {{ $item->customer->kode_customer }}"
+                                                                        disabled>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <label>Nama Barang</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->barang->nama_barang }} - {{ $item->barang->kode_barang }}"
+                                                                        disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4">
+                                                                <div class="col-lg-6">
+                                                                    <label>Total Barang</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->total_barang }}" disabled>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <label>Satuan</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->satuan }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4">
+                                                                <div class="col-lg-6">
+                                                                    <label>Tanggal Produksi</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->tanggal_produksi }}" disabled>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <label>Deadline Produksi</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->deadline_produksi }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4">
+                                                                <div class="col-lg-12">
+                                                                    <label>Status Produksi</label>
+                                                                    <input class="form-control"
+                                                                        value="{{ $item->status_produksi }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
                                     </td>
                                 </tr>

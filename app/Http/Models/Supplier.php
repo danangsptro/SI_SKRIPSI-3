@@ -12,4 +12,9 @@ class Supplier extends Model
     {
         return $this->hasMany(poPurchasing::class, 'supplier_id', 'id');
     }
+
+    public function mpicBarangMasuk()
+    {
+        return $this->hashMany(mpicBarangMasuk::class, 'supplier_id', 'id');
+    }
 }

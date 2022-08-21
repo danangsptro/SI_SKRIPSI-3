@@ -19,7 +19,7 @@ class CreateSpksTable extends Migration
             $table->string('no_spk', 20)->nullable();
             $table->string('nama_customer',50)->nullable();
             $table->string('nama_barang',50)->nullable();
-            $table->decimal('total_barang')->nullable();
+            $table->decimal('total_barang',13,2)->nullable();
             $table->string('satuan',15)->nullable();
             $table->date('tanggal_kirim')->nullable();
             $table->date('tanggal_akhir')->nullable();

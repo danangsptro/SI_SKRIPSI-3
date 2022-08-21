@@ -61,6 +61,16 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert(
             [
+                'name' => 'sales',
+                'position' => 'sales',
+                'username' => 'sales',
+                'email' => 'sales@gmail.com',
+                'password' => Hash::make('qwerty'),
+            ],
+        );
+
+        DB::table('users')->insert(
+            [
                 'name' => 'manager',
                 'position' => 'manager',
                 'username' => 'manager',

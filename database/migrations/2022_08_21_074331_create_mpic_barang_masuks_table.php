@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoPurchasingsTable extends Migration
+class CreateMpicBarangMasuksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreatePoPurchasingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('po_purchasings', function (Blueprint $table) {
+        Schema::create('mpic_barang_masuks', function (Blueprint $table) {
             $table->id();
-            $table->string('no_po', 50);
+            $table->date('tanggal')->nullable();
+            $table->string('no_surat_jalan', 30)->nullable();
             $table->bigInteger('supplier_id')->unsigned();
-            $table->date('tanggal_po');
-            $table->date('tanggal_kirim_awal');
-            $table->date('tanggal_kirim_akhir');
-            $table->decimal('total_barang',13,2);
-            $table->string('satuan', 10);
-            $table->string('validasi', 5);
+            $table->bigInteger('barang_id')->unsigned();
+            $table->string('satuan', 10)->nullable();
+            $table->decimal('total_barang_masuk', 13, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
         });
     }
 
@@ -36,6 +35,6 @@ class CreatePoPurchasingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('po_purchasings');
+        Schema::dropIfExists('mpic_barang_masuks');
     }
 }

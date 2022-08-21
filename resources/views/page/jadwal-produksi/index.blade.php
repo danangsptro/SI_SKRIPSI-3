@@ -48,7 +48,7 @@
                                                 @csrf
                                                 @method('post')
                                                 <button class="btn btn-success"
-                                                    onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
+                                                    onclick="return confirm('ANDA YAKIN INGIN APPROVED ?')">
                                                     KLIK APPROVED!
 
                                                 </button>

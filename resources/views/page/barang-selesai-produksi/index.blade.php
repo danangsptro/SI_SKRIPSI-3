@@ -47,6 +47,9 @@
                                         @elseif($item->status === 'PROD')
                                             <span class="badge badge-warning"> {{ $item->status }}
                                             </span>
+                                        @elseif($item->status === 'SALES')
+                                            <span class="badge badge-dark"> {{ $item->status }}
+                                            </span>
                                         @elseif($item->status === null)
                                             <span class="badge badge-danger"> Tolong Isi Status
                                             </span>

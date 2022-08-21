@@ -91,8 +91,9 @@
             <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Form:</h6>
-                    <a class="collapse-item" onclick="return confirm('Kopi dulu dong')">Jadwal Produksi</a>
-                    <a class="collapse-item" onclick="return confirm('Kopi dulu dong')">Barang Selesai</a>
+                    <a class="collapse-item" href="{{route('mpicBarangMasuk')}}">Mpic Barang Masuk</a>
+                    <a class="collapse-item" href="{{route('mpicBarangKeluar')}}">Mpic Barang Keluar</a>
+                    <a class="collapse-item" href="{{route('laporanMpic')}}">Laporan MPIC</a>
                 </div>
             </div>
         </li>

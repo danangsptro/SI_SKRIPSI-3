@@ -1,12 +1,12 @@
 @extends('masterBackend')
-@section('title', 'DATA | LAPORAN PURCHASING')
+@section('title', 'DATA | CUSTOMER')
 
 
 @section('backend')
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Laporan Receiving</h1>
+        <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Laporan MPIC barang masuk & keluar</h1>
         <hr>
         <a onclick="exportPdf()" class="btn btn-dark btn-icon-split mb-4">
             <span class="text">Print Laporan &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -17,7 +17,7 @@
                 </svg>
             </span>
         </a>
-        <form action="{{ route('laporan-stock-purchasing') }}" method="GET">
+        <form action="" method="GET">
             <div class="row mt-2">
                 <div class="col-lg-4">
                     <div class="input-group">
@@ -48,38 +48,47 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Purchasing</h6>
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Mpic barang masuk & keluar</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Tanggal Receiving</th>
-                                <th>No Receiving</th>
-                                <th>No PO</th>
+                                <th>Tgl</th>
                                 <th>No Surat Jalan</th>
                                 <th>Nama Supplier</th>
-                                <th>Total Barang PO</th>
-                                <th>Total Barang Diterima</th>
-                                <th>Sisa PO</th>
+                                <th>Nama Barang</th>
                                 <th>Satuan</th>
+                                <th>Tgl Masuk</th>
+                                <th>Tgl Keluar</th>
+                                <th>Stock Barang (1)</th>
+                                <th>Total Barang Keluar</th>
+                                <th>Stock Barang (2)</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @foreach ($laporan as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->tangal_receiving ?? '-' }}</td>
-                                    <td>{{ $item->no_receiving }}</td>
-                                    <td>{{ $item->no_po }}</td>
-                                    <td>{{ $item->no_surat_jalan ?? '-' }}</td>
-                                    <td>{{ $item->nama_supplier }}</td>
-                                    <td>{{ $item->total_barang_po }}</td>
-                                    <td>{{ $item->total_barang_yg_diterima ?? '-' }}</td>
-                                    <td>{{ $item->sisa_po ?? '-' }}</td>
-                                    <td>{{ $item->satuan ?? '-' }}</td>
+                                    <td>{{ $item->nama_customer }}</td>
+                                    <td>{{ $item->kode_customer }}</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-info btn-circle">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+
+                                        <form action="" class="d-inline"
+                                            method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-circle"
+                                                onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -90,16 +99,4 @@
 
     </div>
 
-@endsection
-{{-- print-stock-purchasing --}}
-
-@section('js')
-    <script type="text/javascript">
-        function exportPdf() {
-            var start = $('input[name=start]').val();
-            var end = $('input[name=end]').val();
-            var url = "{{ route('print-stock-purchasing') }}?start=" + start + "&end=" + end;
-            return window.open(url, '_blank');
-        }
-    </script>
 @endsection

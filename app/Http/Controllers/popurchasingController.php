@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Models\poPurchasing;
 use App\Http\Models\receivingBarang;
 use App\Http\Models\Supplier;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class popurchasingController extends Controller
@@ -61,7 +63,7 @@ class popurchasingController extends Controller
         });
 
         toastr()->success('Data has been edit successfully!');
-        return redirect('dashboard/popurchasing');
+        return redirect('dashboard/form-pembuatan-po');
     }
 
     public function receivingBarang(Request $request)
@@ -111,7 +113,7 @@ class popurchasingController extends Controller
         return redirect('dashboard/receiving-barang');
     }
 
-    public function stock(Request $request)
+    public function stockPurchasing(Request $request)
     {
         $data = receivingBarang::whereValidasi('Y')->get();
         $start = date("Y-m-d", strtotime($request->start));
@@ -120,5 +122,30 @@ class popurchasingController extends Controller
             $data = $data->whereBetween('tangal_receiving', [$start, $end]);
         }
         return view('page.purchasing.laporan-purchasing', compact('data', 'start', 'end'));
+    }
+
+    public function printStockPurchasing(Request $request)
+    {
+        $user = Auth::user()->id;
+        $idUser = User::where('id', $user)->first();
+        $data = receivingBarang::whereValidasi('Y')->get();
+
+        $start = date("Y-m-d", strtotime($request->start));
+        $end = date("Y-m-d", strtotime($request->end));
+
+        if ($request->start && $request->end) {
+            $data = $data->whereBetween('tangal_receiving', [$start, $end]);
+        }
+
+        $pdf = app('dompdf.wrapper');
+        // $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->loadView('page.purchasing.print-purchasing', compact(
+            'user',
+            'idUser',
+            'data'
+        ));
+        return $pdf->stream("Laporan-receiving.pdf");
     }
 }

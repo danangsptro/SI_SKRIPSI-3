@@ -18,7 +18,7 @@ class CreateJadwalProduksiSalesTable extends Migration
             $table->date('jadwal_dibuat');
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('barang_id')->unsigned();
-            $table->decimal('total_barang');
+            $table->decimal('total_barang', 13,2);
             $table->string('satuan');
             $table->date('tanggal_produksi');
             $table->string('deadline_produksi');

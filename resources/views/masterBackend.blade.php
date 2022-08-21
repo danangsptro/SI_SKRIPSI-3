@@ -26,7 +26,7 @@
                 @yield('backend')
             </div>
 
-           @include('layouts.footer')
+            @include('layouts.footer')
         </div>
     </div>
 
@@ -44,6 +44,7 @@
     <script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
+    @yield('js')
 
 </body>
 

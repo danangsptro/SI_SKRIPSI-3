@@ -6,7 +6,9 @@ use App\Http\Models\barangKeluar;
 use App\Http\Models\barangMasuk;
 use App\Http\Models\BarangSelesai;
 use App\Http\Models\Warehouse;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class warehouseController extends Controller
@@ -81,8 +83,38 @@ class warehouseController extends Controller
         return view('page.warehouse.barang-keluar', compact('barangKeluar'));
     }
 
-    public function laporanStockBarang()
+    public function laporanStockBarang(Request $request)
     {
-        return view('page.warehouse.laporan-stock-barang');
+        $barangKeluar = barangKeluar::all();
+        $start = date("Y-m-d 00:00:00", strtotime($request->start));
+        $end = date("Y-m-d 23:59:59", strtotime($request->end));
+
+        if ($request->start && $request->end) {
+            $barangKeluar = $barangKeluar->whereBetween('tanggal_keluar_barang', [$start, $end]);
+        }
+        return view('page.warehouse.laporan-stock-barang', compact('barangKeluar', 'start', 'end'));
+    }
+
+    public function printWarehouse(Request $request)
+    {
+        $user = Auth::user()->id;
+        $idUser = User::where('id', $user)->first();
+        $barangKeluar = barangKeluar::all();
+
+        $start = date("Y-m-d 00:00:00", strtotime($request->start));
+        $end = date("Y-m-d 23:59:59", strtotime($request->end));
+
+        if ($request->start && $request->end) {
+            $barangKeluar = $barangKeluar->whereBetween('tanggal_keluar_barang', [$start, $end]);
+        }
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('page.warehouse.print-warehouse', compact(
+            'user',
+            'idUser',
+            'barangKeluar'
+        ));
+        return $pdf->stream("Laporan-arsip-baru.pdf");
     }
 }
