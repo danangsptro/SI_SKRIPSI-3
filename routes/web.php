@@ -84,5 +84,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/mpic-barang-masuk', 'mpicController@mpicBarangMasuk')->name('mpicBarangMasuk');
         Route::get('/mpic-barang-keluar', 'mpicController@mpicBarangKeluar')->name('mpicBarangKeluar');
         Route::get('/laporan-mpic', 'mpicController@laporanMpic')->name('laporanMpic');
+        // Profile
+        Route::get('/profile', 'registerPegawaiController@profile')->name('profile');
+        Route::post('/edit-profile/{id}', 'registerPegawaiController@editProfile')->name('profile-edit');
+        Route::post('/update-password/{id}', 'registerPegawaiController@updatePassword')->name('update-profile-password');
     });
 });

@@ -146,6 +146,11 @@
             Register Pegawai
         </div>
         <li class="nav-item">
+            <a class="nav-link" href="{{route('profile')}}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Profile</span></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('register-user') }}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Register Akun</span></a>

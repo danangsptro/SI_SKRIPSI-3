@@ -40,7 +40,9 @@
                                     <td>{{ $item->barang->kode_barang }}</td>
 
                                     <td class="text-center">
-
+                                        <a href="" class="btn btn-dark btn-search ">
+                                            <i class="fas fa-print"></i>
+                                        </a>
                                         <a href="" class="btn btn-info btn-search ">
                                             <i class="fas fa-pen"></i>
                                         </a>
