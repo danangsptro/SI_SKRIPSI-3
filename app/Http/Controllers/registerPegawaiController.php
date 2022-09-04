@@ -15,20 +15,45 @@ class registerPegawaiController extends Controller
         return view('page.register-pegawai.index', compact('data'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id = null)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->position = $request->position;
-        $user->password = Hash::make($request->password);
+        try {
+            if ($id) {
+                $user = User::where('id', $id)->with([])->first();
+                if (!$user) {
+                    toastr()->success('Data has been saved successfully!');
+                    return redirect()->back();
+                }
+                $user->name = $request->name;
+                $user->position = $request->position;
+                $user->username = $request->username;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                // dd($user);
+                $user->save();
+                if ($user) {
+                    toastr()->success('Data has been edit successfully!');
+                    return redirect()->back();
+                }
+            }
 
-        $user->save();
+            $user = new User();
+            $user->name = $request->name;
+            $user->position = $request->position;
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->password = Hash::make('qwerty');
+            $user->save();
 
-        if ($user) {
-            toastr()->success('Data has been saved successfully!');
+            if ($user) {
+                toastr()->success('Data has been saved successfully!');
+                return redirect()->back();
+            }
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
             return redirect()->back();
+            toastr()->error($message);
+
         }
     }
 

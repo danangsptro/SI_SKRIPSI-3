@@ -80,6 +80,24 @@
         </li>
     @endif
 
+    @if (Auth::user()->position === 'manager')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('laporan-stock-purchasing') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Laporan Purchasing</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('laporanMpic') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Laporan Mpic/ppic</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('warehouse-laporan-stock-barang') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Laporan Stock Barang Warehouse</span></a>
+        </li>
+    @endif
+
 
     @if (Auth::user()->position === 'admin' || Auth::user()->position === 'mpic/ppic')
         <li class="nav-item">
@@ -91,9 +109,9 @@
             <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Form:</h6>
-                    <a class="collapse-item" href="{{route('mpicBarangMasuk')}}">Mpic Barang Masuk</a>
-                    <a class="collapse-item" href="{{route('mpicBarangKeluar')}}">Mpic Barang Keluar</a>
-                    <a class="collapse-item" href="{{route('laporanMpic')}}">Laporan MPIC</a>
+                    <a class="collapse-item" href="{{ route('mpicBarangMasuk') }}">Mpic Barang Masuk</a>
+                    <a class="collapse-item" href="{{ route('mpicBarangKeluar') }}">Mpic Barang Keluar</a>
+                    <a class="collapse-item" href="{{ route('laporanMpic') }}">Laporan MPIC</a>
                 </div>
             </div>
         </li>
@@ -146,16 +164,16 @@
             Register Pegawai
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('profile')}}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Profile</span></a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="{{ route('register-user') }}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Register Akun</span></a>
         </li>
     @endif
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('profile') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Profile</span></a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

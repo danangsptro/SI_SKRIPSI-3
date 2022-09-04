@@ -37,6 +37,11 @@
                                 novalidate method="post">
                                 @csrf
                                 <div>
+                                    <label class="form-label font-weight-bold ">Position</label>
+                                    <input type="text"value="{{ $data->position }}" class="form-control mb-2"
+                                        autocomplete="off" readonly />
+                                </div>
+                                <div>
                                     <label class="form-label font-weight-bold">Nama</label>
                                     <input type="text" name="name" value="{{ $data->name }}" class="form-control"
                                         autocomplete="off" required />

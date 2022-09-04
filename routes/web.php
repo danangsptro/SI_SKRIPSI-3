@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/selesai-produksi-update/{id}', 'barangSelesaiController@update')->name('barang-selesai-produksi-update');
         // Register User
         Route::get('/register-user', 'registerPegawaiController@index')->name('register-user');
-        Route::post('/register-user-store', 'registerPegawaiController@store')->name('register-user-store');
+        Route::post('/register-user-store/{id?}', 'registerPegawaiController@store')->name('register-user-store');
         Route::delete('/register-user-delete/{id}', 'registerPegawaiController@delete')->name('register-user-delete');
         // Surat Jalan
         Route::get('/surat-jalan', 'suratJalanController@index')->name('surat-jalan');

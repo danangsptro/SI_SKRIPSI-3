@@ -66,7 +66,7 @@
                             <div class="form-row">
                                 <div class="form-group col-lg-12">
                                     <label for="password">Password</label>
-                                    <input type="text" class="form-control" name="password"
+                                    <input type="text" class="form-control" value="qwerty" readonly name="password"
                                         @error('password') ins-invalid @enderror required>
 
                                 </div>
@@ -94,7 +94,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Pegawai</th>
+                                <th>Position</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Username</th>
@@ -106,15 +106,111 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                       {{$q->position}}
+                                        {{ $q->position }}
                                     </td>
                                     <td>{{ $q->name }}</td>
                                     <td>{{ $q->email }}</td>
                                     <td>{{ $q->username }}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-circle" onclick="return confirm('fitur on going')">
+                                        <a href="#" class="btn btn-info btn-circle" data-toggle="modal"
+                                            data-target="#edit{{ $loop->iteration }}">
                                             <i class="fas fa-pen"></i>
                                         </a>
+                                        <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="edit{{ $loop->iteration }}Label">Update
+                                                            Data
+                                                            User
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body text-left">
+                                                        <form action="{{route('register-user-store', $q->id)}}" method="POST">
+                                                            @csrf
+                                                            <div class="form-row">
+                                                                <div class="form-group col-lg-6">
+                                                                    <label for="name">Name</label>
+                                                                    <input type="text" name="name"
+                                                                        class="form-control" value="{{ $q->name }}"
+                                                                        required>
+                                                                </div>
+                                                                <div class="form-group col-lg-6">
+                                                                    <label for="password">Password</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="password"
+                                                                        @error('password') ins-invalid @enderror required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-lg-6">
+                                                                    <label>Username</label>
+                                                                    <input type="text" name="username"
+                                                                        class="form-control @error('username') ins-invalid @enderror"
+                                                                        value="{{ $q->username }}" required>
+                                                                </div>
+                                                                <div class="form-group col-lg-6">
+                                                                    <label for="email">Email</label>
+                                                                    <input type="text" name="email"
+                                                                        class="form-control @error('email') ins-invalid @enderror"
+                                                                        value="{{ $q->email }}" required>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-lg-12">
+                                                                <label>User Role</label>
+                                                                <br>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'admin' ? 'checked' : '' }}
+                                                                    name="position" value="admin">
+                                                                <label for="customRadioInline1">Admin</label>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'manager' ? 'checked' : '' }}
+                                                                    name="position" value="manager">
+                                                                <label for="customRadioInline2">Manager</label>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'produksi' ? 'checked' : '' }}
+                                                                    name="position" value="produksi">
+                                                                <label for="customRadioInline2">Produksi</label>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'warehouse' ? 'checked' : '' }}
+                                                                    name="position" value="warehouse">
+                                                                <label for="customRadioInline2">Warehouse</label>
+                                                                <br>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'purchasing' ? 'checked' : '' }}
+                                                                    name="position" value="purchasing">
+                                                                <label for="customRadioInline2">Purchasing</label>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'mpic/ppic' ? 'checked' : '' }}
+                                                                    name="position" value="mpic/ppic">
+                                                                <label for="customRadioInline2">Mpic/ppic</label>
+                                                                <input type="radio"
+                                                                    {{ $q->position == 'sales' ? 'checked' : '' }}
+                                                                    name="position" value="sales">
+                                                                <label for="customRadioInline2">Sales</label>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-lg-12">
+                                                                    <button class="btn btn-success"
+                                                                        type="submit">Simpan</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <form action="{{ route('register-user-delete', $q->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf
