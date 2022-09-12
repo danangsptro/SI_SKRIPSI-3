@@ -40,10 +40,12 @@
                                     <td>{{ $item->barang->kode_barang }}</td>
 
                                     <td class="text-center">
-                                        <a href="" class="btn btn-dark btn-search ">
+                                        <a target="_blank" href="{{ route('download-surat', $item->id) }}"
+                                            class="btn btn-dark btn-search ">
                                             <i class="fas fa-print"></i>
                                         </a>
-                                        <a href="" class="btn btn-info btn-search ">
+                                        <a href="{{ route('surat-jalan-edit', $item->id) }}"
+                                            class="btn btn-info btn-search " target="_blank">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                         {{-- button modal --}}
@@ -96,14 +98,12 @@
                                                         <div class="row mt-4">
                                                             <div class="col-lg-6">
                                                                 <label>Alamat</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->alamat }} "
+                                                                <input class="form-control" value="{{ $item->alamat }} "
                                                                     disabled>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <label>Expedisi</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->expedisi }} "
+                                                                <input class="form-control" value="{{ $item->expedisi }} "
                                                                     disabled>
                                                             </div>
                                                         </div>
@@ -111,13 +111,11 @@
                                                             <div class="col-lg-6">
                                                                 <label>Total Barang</label>
                                                                 <input class="form-control"
-                                                                    value="{{ $item->total_barang_kirim }} "
-                                                                    disabled>
+                                                                    value="{{ $item->total_barang_kirim }} " disabled>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <label>Satuan</label>
-                                                                <input class="form-control"
-                                                                    value="{{ $item->satuan }} "
+                                                                <input class="form-control" value="{{ $item->satuan }} "
                                                                     disabled>
                                                             </div>
                                                         </div>
@@ -132,7 +130,7 @@
                                             </div>
                                         </div>
                                         {{-- Close Modal --}}
-                                        <form action="" class="d-inline"
+                                        <form action="{{ route('surat-jalan-delete', $item->id) }}" class="d-inline"
                                             method="POST">
                                             @csrf
                                             @method('delete')

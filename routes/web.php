@@ -52,7 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surat-jalan', 'suratJalanController@index')->name('surat-jalan');
         Route::get('/surat-jalan-create', 'suratJalanController@create')->name('surat-jalan-create');
         Route::post('/surat-jalan-store', 'suratJalanController@store')->name('surat-jalan-store');
-        Route::get('/download-surat ', 'suratJalanController@downloadSurat')->name('download-surat');
+        Route::get('/download-surat/{id}', 'suratJalanController@downloadSurat')->name('download-surat');
+        Route::get('/surat-jalan-edit/{id}', 'suratJalanController@editSurat')->name('surat-jalan-edit');
+        Route::post('/surat-jalan-update/{id}', 'suratJalanController@updateSurat')->name('surat-jalan-update');
+        Route::delete('/surat-jalan-delete/{id}', 'suratJalanController@deleteSurat')->name('surat-jalan-delete');
         // SPK
         Route::get('/spk', 'spkController@index')->name('spk');
         Route::get('/spk/{id}', 'spKController@edit')->name('spk-edit');
