@@ -17,7 +17,7 @@
                 </svg>
             </span>
         </a>
-        <form action="" method="GET">
+        <form action="{{route('laporanMpic')}}" method="GET">
             <div class="row mt-2">
                 <div class="col-lg-4">
                     <div class="input-group">
@@ -37,7 +37,7 @@
                 <div class="col-lg-4">
                     <button class="btn btn-success" type="submit">Search</button>
                     @if (Request::get('start') and Request::get('end'))
-                        <a href="{{ route('laporan-stock-purchasing') }}" type="submit" class="btn btn-danger"
+                        <a href="{{ route('laporanMpic') }}" type="submit" class="btn btn-danger"
                             style="margin-left: 0.5em">Clear filter</a>
                     @endif
                 </div>
@@ -65,31 +65,24 @@
                                 <th>Stock Barang (1)</th>
                                 <th>Total Barang Keluar</th>
                                 <th>Stock Barang (2)</th>
-                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($laporan as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_customer }}</td>
-                                    <td>{{ $item->kode_customer }}</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-info btn-circle">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-
-                                        <form action="" class="d-inline"
-                                            method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger btn-circle"
-                                                onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                @if ($item->stock_barang2 != null)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->no_surat_jalan }}</td>
+                                        <td>{{ $item->nama_supplier }}</td>
+                                        <td>{{ $item->nama_barang }}</td>
+                                        <td>{{ $item->satuan }}</td>
+                                        <td>{{ $item->tanggal_masuk }}</td>
+                                        <td>{{ $item->tanggal_keluar }}</td>
+                                        <td>{{ number_format($item->stock_barang1) }}</td>
+                                        <td>{{ number_format($item->total_barang_keluar) ?? '-' }}</td>
+                                        <td>{{ number_format($item->stock_barang2) ?? '-' }}</td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -99,4 +92,16 @@
 
     </div>
 
+@endsection
+
+
+@section('js')
+    <script type="text/javascript">
+        function exportPdf() {
+            var start = $('input[name=start]').val();
+            var end = $('input[name=end]').val();
+            var url = "{{ route('print-mpic') }}?start=" + start + "&end=" + end;
+            return window.open(url, '_blank');
+        }
+    </script>
 @endsection

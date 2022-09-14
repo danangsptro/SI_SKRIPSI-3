@@ -15,7 +15,8 @@ class CreateMpicBarangKeluarsTable extends Migration
     {
         Schema::create('mpic_barang_keluars', function (Blueprint $table) {
             $table->id();
-            $table->date('tangga');
+            $table->date('tanggal_masuk');
+            $table->date('tanggal_keluar')->nullable();
             $table->string('no_surat_jalan',30)->nullable();
             $table->string('nama_supplier',50)->nullable();
             $table->string('nama_barang',50)->nullable();

@@ -1,5 +1,5 @@
 @extends('masterBackend')
-@section('title', 'DATA | CREATE PO PURCHASING')
+@section('title', 'DATA | CREATE MPIC BARANG MASUK')
 
 
 @section('backend')
@@ -12,11 +12,33 @@
     <div class="container card-content">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Create PO Purchasing</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Create PO Mpic Barang Masuk</h6>
             </div>
             <div class="container-fluid mt-4 mb-4">
-                <form method="POST" action="{{ route('popurchasing-store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('mpicBarangMasukStore') }}" enctype="multipart/form-data">
                     @csrf
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Tanggal</label>
+                                <input type="date" class="form-control" name="tanggal" required>
+                                @error('tanggal')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>No Surat Jalan</label>
+                                <input type="text" class="form-control" name="no_surat_jalan"
+                                    placeholder="Masukan no surat jalan" required>
+                                @error('no_surat_jalan')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -41,45 +63,35 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Tanggal PO</label>
-                                <input type="date" class="form-control" name="tanggal_po" required>
-                                @error('tanggal_po')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Tanggal Kirim Awal</label>
-                                <input type="date" class="form-control" required name="tanggal_kirim_awal">
-                                @error('tanggal_kirim_awal')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Tanggal Kirim Akhir</label>
-                                <input type="date" class="form-control" required name="tanggal_kirim_akhir">
-                                @error('tanggal_kirim_akhir')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <label class="control-label mb-1">Nama Barang</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" name="barang_id">
+                                        <option selected>Pilih Option</option>
+                                        @foreach ($barang as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{ $item->nama_barang }} - {{ $item->kode_barang }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('supplier_id')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Total Barang</label>
-                                <input type="number" class="form-control" placeholder="Masukan Total Barang" required
-                                    name="total_barang">
-                                @error('total_barang')
+                                <label>Total Barang Masuk</label>
+                                <input type="number" class="form-control" placeholder="Masukan Total Barang Masuk" required
+                                    name="total_barang_masuk">
+                                @error('total_barang_masuk')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="control-label">Satuan</label>
@@ -99,11 +111,12 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary"
                             onclick="return confirm('Data yang di masukan sudah benar ?')">Submit</button>
-                        <a href="{{route('popurchasing')}}" type="submit" class="btn btn-dark">Back</a>
+                        <a href="{{ route('mpicBarangMasuk') }}" type="submit" class="btn btn-dark">Back</a>
                     </div>
                 </form>
             </div>

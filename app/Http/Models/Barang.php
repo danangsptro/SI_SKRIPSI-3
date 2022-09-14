@@ -30,4 +30,9 @@ class Barang extends Model
     {
         return $this->hasMany(Spk::class, 'barang_id', 'id');
     }
+
+    public function mpicBarangMasuk()
+    {
+        return $this->hasMany(mpicBarangMasuk::class, 'barang_id', 'id');
+    }
 }

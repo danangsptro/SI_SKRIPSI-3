@@ -8,7 +8,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">FORM MPIC Barang Masuk</h1>
         <hr>
-        <a href="" class="btn btn-primary btn-icon-split mb-4">
+        <a href="{{ route('mpicBarangMasukCreate') }}" class="btn btn-primary btn-icon-split mb-4">
             <span class="icon text-white-50">
                 <i class="menu-icon fa fa-plus-square"></i>
             </span>
@@ -38,14 +38,19 @@
                             @foreach ($mpicBarangMasuk as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_customer }}</td>
-                                    <td>{{ $item->kode_customer }}</td>
+                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->no_surat_jalan }}</td>
+                                    <td>{{ $item->supplier->nama_supplier }}</td>
+                                    <td>{{ $item->barang->nama_barang }} - {{ $item->barang->kode_barang }}</td>
+                                    <td>{{ $item->satuan }}</td>
+                                    <td>{{ number_format($item->total_barang_masuk) }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-info btn-circle">
+                                        <a href="{{ route('mpicBarangMasukEdit', $item->id) }}"
+                                            class="btn btn-info btn-circle">
                                             <i class="fas fa-pen"></i>
                                         </a>
 
-                                        <form action="" class="d-inline"
+                                        <form action="{{ route('mpicBarangMasukDelete', $item->id) }}" class="d-inline"
                                             method="POST">
                                             @csrf
                                             @method('delete')

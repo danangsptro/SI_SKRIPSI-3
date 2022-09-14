@@ -8,12 +8,6 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">FORM MPIC Barang Keluar</h1>
         <hr>
-        <a href="" class="btn btn-primary btn-icon-split mb-4">
-            <span class="icon text-white-50">
-                <i class="menu-icon fa fa-plus-square"></i>
-            </span>
-            <span class="text">Add New</span>
-        </a>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -25,7 +19,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tgl</th>
+                                <th>Tgl (M)</th>
+                                <th>Tgl (K)</th>
                                 <th>No Surat Jalan</th>
                                 <th>Nama Supplier</th>
                                 <th>Nama Barang</th>
@@ -40,22 +35,34 @@
                             @foreach ($mpicBarangKeluar as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_customer }}</td>
-                                    <td>{{ $item->kode_customer }}</td>
+                                    <td>{{ $item->tanggal_masuk }}</td>
+                                    <td>{{ $item->tanggal_keluar ?? '-' }}</td>
+                                    <td>{{ $item->no_surat_jalan }}</td>
+                                    <td>{{ $item->nama_supplier }}</td>
+                                    <td>{{ $item->nama_barang }}</td>
+                                    <td>{{ $item->satuan }}</td>
+                                    <td>{{ number_format($item->stock_barang1) }}</td>
+                                    <td>{{ number_format($item->total_barang_keluar) ?? '-' }}</td>
+                                    <td>{{ number_format($item->stock_barang2) ?? '-' }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-info btn-circle">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
+                                        @if ($item->stock_barang2 === null)
+                                            <a href="{{ route('mpicBarangKeluarEdit', $item->id) }}"
+                                                class="btn btn-info btn-circle">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
 
-                                        <form action="" class="d-inline"
-                                            method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger btn-circle"
-                                                onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                            <form action="" class="d-inline" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger btn-circle"
+                                                    onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <span class="badge badge-pill badge-success"> Data Sudah Di update
+                                            </span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

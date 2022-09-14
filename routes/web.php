@@ -83,10 +83,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update-supplier/{id}', 'supplierController@update')->name('update-supplier');
         Route::get('/edit-supplier/{id}', 'supplierController@edit')->name('edit-supplier');
         Route::delete('/delete-supplier/{id}', 'supplierController@delete')->name('delete-supplier');
-        // Mpic
+        // Mpic Barang Masuk
         Route::get('/mpic-barang-masuk', 'mpicController@mpicBarangMasuk')->name('mpicBarangMasuk');
+        Route::get('/mpic-barang-masuk-create', 'mpicController@createMpicBarangMasuk')->name('mpicBarangMasukCreate');
+        Route::get('/mpic-barang-masuk-edit/{id}', 'mpicController@editMpicBarangMasuk')->name('mpicBarangMasukEdit');
+        Route::post('/mpic-barang-masuk-store','mpicController@storeMpicBarangMasuk')->name('mpicBarangMasukStore');
+        Route::post('/mpic-barang-masuk-edit/{id}', 'mpicController@updateMpicBarangMasuk')->name('mpicBarangMasukUpdate');
+        Route::delete('/mpic-barang-masuk-delete/{id}', 'mpicController@deleteMpicBarangMasuk')->name('mpicBarangMasukDelete');
+        // Mpic Barang Keluar
         Route::get('/mpic-barang-keluar', 'mpicController@mpicBarangKeluar')->name('mpicBarangKeluar');
+        Route::get('/mpic-barang-keluar-edit/{id}', 'mpicController@editMpicBarangKeluar')->name('mpicBarangKeluarEdit');
+        Route::post('/mpic=barang-keluar-update/{id}', 'mpicController@updateMpicBarangKeluar')->name('mpicBarangKeluarUpdate');
         Route::get('/laporan-mpic', 'mpicController@laporanMpic')->name('laporanMpic');
+        Route::get('/print-laporan-mpic', 'mpicController@printLaporanMpic')->name('print-mpic');
         // Profile
         Route::get('/profile', 'registerPegawaiController@profile')->name('profile');
         Route::post('/edit-profile/{id}', 'registerPegawaiController@editProfile')->name('profile-edit');
