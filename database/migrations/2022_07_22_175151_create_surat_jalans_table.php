@@ -16,13 +16,13 @@ class CreateSuratJalansTable extends Migration
         Schema::create('surat_jalans', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal_surat_jalan');
-            $table->string('nomor_surat_jalan');
+            $table->string('nomor_surat_jalan', 50);
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('barang_id')->unsigned();
-            $table->bigInteger('total_barang_kirim');
-            $table->string('satuan');
+            $table->decimal('total_barang_kirim', 13, 2);
+            $table->string('satuan', 10);
             $table->text('alamat');
-            $table->string('expedisi');
+            $table->string('expedisi', 20);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');

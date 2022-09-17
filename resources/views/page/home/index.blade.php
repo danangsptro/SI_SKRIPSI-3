@@ -6,16 +6,17 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800" style="text-transform: uppercase; font-weight:bold">Dashboard</h1>
 
         </div>
-        <div class=" shadow jumbotron jumbotron-fluid bg-dark">
+        <div class=" shadow jumbotron jumbotron-fluid" style="background: black">
             <div class="container">
-                <h1 class=" text-white">Selamat Datang,
+                <h1 class=" text-white" style="text-transform:uppercase; font-weight:bold">Selamat Datang,
                     {{ Auth::user()->position }} 👋
 
                 </h1>
-                <p class="lead text-warning">SISTEM SUPPLY CHAN UNTUK PRODUKSI BARANG DI PT.ARTHAWENA SAKTI GEMILANG.</p>
+                <p class="lead text-warning" style="font-weight: bold">SISTEM SUPPLY CHAN UNTUK PRODUKSI BARANG DI
+                    PT.ARTHAWENA SAKTI GEMILANG.</p>
             </div>
         </div>
         <!-- Content Row -->
@@ -73,7 +74,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Total Data  Warehouse</div>
+                                    Total Data Warehouse</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $warehouse->count() }}</div>
                             </div>
                         </div>

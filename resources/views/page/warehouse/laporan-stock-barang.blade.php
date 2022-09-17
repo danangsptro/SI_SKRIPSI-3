@@ -71,9 +71,9 @@
                                     <td>{{ $item->tanggal_keluar_barang ?? '-' }}</td>
                                     <td>{{ $item->nama_customer }}</td>
                                     <td>{{ $item->nama_barang }}</td>
-                                    <td>{{ $item->total_barang_masuk }}</td>
-                                    <td>{{ $item->total_barang_keluar ?? '-' }}</td>
-                                    <td>{{ $item->total_sisa_barang ?? '-' }}</td>
+                                    <td>{{ number_format($item->total_barang_masuk) }}</td>
+                                    <td>{{ number_format($item->total_barang_keluar) ?? '-' }}</td>
+                                    <td>{{ number_format($item->total_sisa_barang) ?? '-' }}</td>
                                     <td>{{ $item->satuan }}</td>
                                     <td>{{ $item->no_label }}</td>
                                     <td>

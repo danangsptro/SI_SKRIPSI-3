@@ -18,7 +18,7 @@ class CreateBarangMasuksTable extends Migration
             $table->date('tanggal_masuk_barang')->nullable();
             $table->string('nama_customer', 50)->nullable();
             $table->string('nama_barang', 50)->nullable();
-            $table->integer('total_barang_masuk')->nullable();
+            $table->decimal('total_barang_masuk', 13, 2)->nullable();
             $table->string('satuan', 10)->nullable();
             $table->string('no_label', 20)->nullable();
             $table->string('status', 15)->nullable();

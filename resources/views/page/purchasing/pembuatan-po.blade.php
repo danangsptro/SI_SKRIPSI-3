@@ -42,10 +42,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->no_po }}</td>
                                     <td>{{ $item->tanggal_po }}</td>
-                                    <td>{{ $item->supplier->nama_supplier }} - {{$item->supplier->kode_supplier}}</td>
+                                    <td>{{ $item->supplier->nama_supplier }} - {{ $item->supplier->kode_supplier }}</td>
                                     <td>{{ $item->tanggal_kirim_awal }}</td>
                                     <td>{{ $item->tanggal_kirim_akhir }}</td>
-                                    <td>{{ $item->total_barang }}</td>
+                                    <td>{{ number_format($item->total_barang) }}</td>
                                     <td>{{ $item->satuan }}</td>
                                     <td>
                                         @if ($item->validasi === 'N')

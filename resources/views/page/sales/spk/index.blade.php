@@ -20,6 +20,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Tgl Spk</th>
                                 <th>No Spk</th>
                                 <th>Nama Customer</th>
                                 <th>Nama Barang</th>
@@ -35,6 +36,7 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->tanggal_spk }}</td>
                                     <td>{{ $item->no_spk }}</td>
                                     <td>{{ $item->nama_customer }}</td>
                                     <td>{{ $item->nama_barang }}</td>

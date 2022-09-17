@@ -69,9 +69,9 @@
                                     <td>{{ $item->no_po }}</td>
                                     <td>{{ $item->no_surat_jalan ?? '-' }}</td>
                                     <td>{{ $item->nama_supplier }}</td>
-                                    <td>{{ $item->total_barang_po }}</td>
-                                    <td>{{ $item->total_barang_yg_diterima ?? '-' }}</td>
-                                    <td>{{ $item->sisa_po ?? '-' }}</td>
+                                    <td>{{ number_format($item->total_barang_po) }}</td>
+                                    <td>{{ number_format($item->total_barang_yg_diterima) ?? '-' }}</td>
+                                    <td>{{ number_format($item->sisa_po) ?? '-' }}</td>
                                     <td>{{ $item->satuan ?? '-' }}</td>
                                     <td>
                                         @if ($item->validasi === 'N')

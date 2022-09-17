@@ -18,11 +18,11 @@ class CreateJadwalProduksisTable extends Migration
             $table->date('jadwal_dibuat');
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('barang_id')->unsigned();
-            $table->decimal('total_barang', 13,2);
-            $table->string('satuan');
+            $table->decimal('total_barang', 13, 2);
+            $table->string('satuan', 10);
             $table->date('tanggal_produksi');
-            $table->string('deadline_produksi');
-            $table->string('status_produksi');
+            $table->date('deadline_produksi');
+            $table->string('status_produksi', 10);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
