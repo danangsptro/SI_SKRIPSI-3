@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\popurchasingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -76,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update-validasi-receiving/{id}', 'popurchasingController@updateReceiving')->name('update-validasi-receiving');
         Route::get('/laporan-stock-purchasing', 'popurchasingController@stockPurchasing')->name('laporan-stock-purchasing');
         Route::get('/print-stock-purchasing', 'popurchasingController@printStockPurchasing')->name('print-stock-purchasing');
+        Route::get('/export-excell-purchasing', 'popurchasingController@exportExcell')->name('export-excell-purchasing');
         // Supplier
         Route::get('/supplier', 'supplierController@index')->name('supplier');
         Route::get('/create-supplier', 'supplierController@create')->name('supplier-create');

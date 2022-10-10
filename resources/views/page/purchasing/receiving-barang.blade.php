@@ -13,7 +13,7 @@
                 <div class="col-lg-4">
                     <div class="input-group">
                         <span class="input-group-addon">Start: &nbsp;</span>
-                        <input type="date" class="form-control date" placeholder="yyyy-mm-dd"
+                        <input type="date" class="form-control date" id="start" placeholder="yyyy-mm-dd"
                             value="{{ Request::get('start') ? Request::get('start') : '' }}" name="start" />
                     </div>
 
@@ -21,7 +21,7 @@
                 <div class="col-lg-4">
                     <div class="input-group">
                         <span class="input-group-addon">End: &nbsp;</span>
-                        <input type="date" class="form-control date" placeholder="yyyy-mm-dd"
+                        <input type="date" class="form-control date" id="end" placeholder="yyyy-mm-dd"
                             value="{{ Request::get('end') ? Request::get('end') : '' }}" name="end" />
                     </div>
                 </div>
@@ -32,7 +32,9 @@
                             style="margin-left: 0.5em">Clear filter</a>
                     @endif
                 </div>
-
+                <div class="col-lg-4">
+                    <a class="btn btn-info" onclick="exportExcel()">Export Excell</a>
+                </div>
             </div>
         </form>
         <br>
@@ -102,5 +104,15 @@
         </div>
 
     </div>
-
+@endsection
+@section('js')
+    <script type="text/javascript">
+         function exportExcel() {
+            var start = document.getElementById('start').value
+            var end = document.getElementById('end').value
+            console.log(start, end);
+            var url =  "{{ url('dashboard/export-excell-purchasing') }}" + "?start=" + start + "&end=" + end
+            window.open(url, '_blank');
+        }
+    </script>
 @endsection

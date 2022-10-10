@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ReceivingExport;
 use App\Http\Models\poPurchasing;
 use App\Http\Models\receivingBarang;
 use App\Http\Models\Supplier;
@@ -9,6 +10,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\URL;
 
 class popurchasingController extends Controller
 {
@@ -75,6 +78,30 @@ class popurchasingController extends Controller
             $data = $data->whereBetween('tangal_receiving', [$start, $end]);
         }
         return view('page.purchasing.receiving-barang', compact('data', 'start', 'end'));
+    }
+
+    public function exportExcell(Request $request) {
+        $receivingBarang = receivingBarang::all();
+        $start = date("Y-m-d", strtotime($request->start));
+        $end = date("Y-m-d", strtotime($request->end));
+        if ($request->start && $request->end) {
+            $receivingBarang = $receivingBarang->whereBetween('tangal_receiving', [$start, $end]);
+        }
+        $result = $receivingBarang->map(function($item, $key) {
+            return [
+                'Tanggal Receiving' => $item->tangal_receiving,
+                'No Receiving' => $item->no_receiving,
+                'No PO' => $item->no_po,
+                'No Surat Jalan' => $item->no_surat_jalan,
+                'Nama Suplier' => $item->nama_supplier,
+                'Total Barang PO' => $item->total_barang_po,
+                'Total Barang diterima' => $item->total_barang_yg_diterima,
+                'Sisa PO' => $item->sisa_po,
+                'Satuan' => $item->satuan,
+                'Validasi' => $item->validasi
+            ];
+        });
+        return Excel::download(new ReceivingExport($result), 'receiving-barang.xlsx');
     }
 
     public function editReceiving($id)
