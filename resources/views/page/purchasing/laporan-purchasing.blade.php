@@ -9,7 +9,7 @@
         <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Laporan Receiving</h1>
         <hr>
         <a onclick="exportPdf()" class="btn btn-dark btn-icon-split mb-4">
-            <span class="text">Print Laporan &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            <span class="text">Print Laporan PDF &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                     <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
                     <path
@@ -17,7 +17,7 @@
                 </svg>
             </span>
         </a>
-        <a onclick="exportExcel()" class="btn btn-info mb-4">Export Excell</a>
+        <a onclick="exportExcel()" class="btn btn-info mb-4">Print Excell</a>
         <form action="{{ route('laporan-stock-purchasing') }}" method="GET">
             <div class="row mt-2">
                 <div class="col-lg-4">
