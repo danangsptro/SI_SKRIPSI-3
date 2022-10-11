@@ -9,6 +9,10 @@
         <h1 class="h3 mb-2 text-gray-800 text-center mb-4 mt-4">Data Receiving</h1>
         <hr>
         <form action="{{ route('receiving-barang') }}" method="GET">
+            <div class="col-lg-4">
+                <a class="btn btn-info" onclick="exportExcel()">Export Excell</a>
+            </div>
+            <br>
             <div class="row mt-2">
                 <div class="col-lg-4">
                     <div class="input-group">
@@ -32,9 +36,7 @@
                             style="margin-left: 0.5em">Clear filter</a>
                     @endif
                 </div>
-                <div class="col-lg-4">
-                    <a class="btn btn-info" onclick="exportExcel()">Export Excell</a>
-                </div>
+
             </div>
         </form>
         <br>
@@ -107,11 +109,11 @@
 @endsection
 @section('js')
     <script type="text/javascript">
-         function exportExcel() {
+        function exportExcel() {
             var start = document.getElementById('start').value
             var end = document.getElementById('end').value
             console.log(start, end);
-            var url =  "{{ url('dashboard/export-excell-purchasing') }}" + "?start=" + start + "&end=" + end
+            var url = "{{ url('dashboard/export-excell-purchasing') }}" + "?start=" + start + "&end=" + end
             window.open(url, '_blank');
         }
     </script>

@@ -34,7 +34,7 @@ class suratJalanController extends Controller
             'barang_id' => 'required|max:10',
             'satuan' => 'required|max:20',
             'total_barang_kirim' => 'required|max:20',
-            'alamat' => 'required|max:50',
+            'alamat' => 'required|min:50',
             'expedisi' => 'required|max:20',
         ]);
 
