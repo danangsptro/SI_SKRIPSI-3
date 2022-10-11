@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/laporan-stock-purchasing', 'popurchasingController@stockPurchasing')->name('laporan-stock-purchasing');
         Route::get('/print-stock-purchasing', 'popurchasingController@printStockPurchasing')->name('print-stock-purchasing');
         Route::get('/export-excell-purchasing', 'popurchasingController@exportExcell')->name('export-excell-purchasing');
+        Route::get('/export-excell-laporan', 'popurchasingController@exportExcelLaporan')->name('export-excell-laporan');
         // Supplier
         Route::get('/supplier', 'supplierController@index')->name('supplier');
         Route::get('/create-supplier', 'supplierController@create')->name('supplier-create');

@@ -17,6 +17,7 @@
                 </svg>
             </span>
         </a>
+        <a onclick="exportExcel()" class="btn btn-info mb-4">Export Excell</a>
         <form action="{{ route('laporan-stock-purchasing') }}" method="GET">
             <div class="row mt-2">
                 <div class="col-lg-4">
@@ -99,6 +100,13 @@
             var start = $('input[name=start]').val();
             var end = $('input[name=end]').val();
             var url = "{{ route('print-stock-purchasing') }}?start=" + start + "&end=" + end;
+            return window.open(url, '_blank');
+        }
+
+        function exportExcel() {
+            var start = $('input[name=start]').val();
+            var end = $('input[name=end]').val();
+            var url = "{{ route('export-excell-laporan') }}?start=" + start + "&end=" + end;
             return window.open(url, '_blank');
         }
     </script>
